@@ -15,6 +15,11 @@ public class WordWrapKataTest {
         assertThat(wrap("hola", 1), is("h\no\nl\na"));
     }
 
+    @Test
+    public void two_words_smaller_than_the_number_of_columns_split_the_content_without_splitting_words(){
+        assertThat(wrap("hola luis", 6), is("hola\nluis"));
+    }
+
     private String wrap(String text, int numberOfColumns) {
         WordWrap wrapper = new WordWrap();
         return wrapper.wrap(text, numberOfColumns);
