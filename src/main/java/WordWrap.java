@@ -3,6 +3,8 @@ public class WordWrap {
         if (text.length() <= numberOfColumns){
             return text;
         }
-        return text.substring(0, numberOfColumns) + "\n" + wrap(text.substring(numberOfColumns), numberOfColumns);
+        return text.substring(0, numberOfColumns)
+                + "\n"
+                + wrap(text.substring(numberOfColumns), numberOfColumns);
     }
 }
