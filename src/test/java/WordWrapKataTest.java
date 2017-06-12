@@ -12,6 +12,7 @@ public class WordWrapKataTest {
     @Test
     public void one_word_bigger_than_number_of_columns_is_wrapped_by_the_number_of_columns(){
         assertThat(wrap("hola", 2), is("ho\nla"));
+        assertThat(wrap("hola", 1), is("h\no\nl\na"));
     }
 
     private String wrap(String text, int numberOfColumns) {
