@@ -20,6 +20,11 @@ public class WordWrapKataTest {
         assertThat(wrap("hola luis", 6), is("hola\nluis"));
     }
 
+    @Test
+    public void first_word_bigger_than_number_of_columns_split_by_number_of_columns(){
+        assertThat(wrap("hola luis", 2), is("ho\nla\nlu\nis"));
+    }
+
     private String wrap(String text, int numberOfColumns) {
         WordWrap wrapper = new WordWrap();
         return wrapper.wrap(text, numberOfColumns);
