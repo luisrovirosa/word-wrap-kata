@@ -4,9 +4,10 @@ public class WordWrap {
             return text;
         }
         int beginningOfSecondWrap = hasSpacesWithinColumns(text, numberOfColumns) ? positionOfSpace(text) + 1 : numberOfColumns;
+        String secondWrap = wrap(text.substring(beginningOfSecondWrap), numberOfColumns);
         return firstWrap(text, numberOfColumns)
                 + "\n"
-                + wrap(text.substring(beginningOfSecondWrap), numberOfColumns);
+                + secondWrap;
     }
 
     private String firstWrap(String text, int numberOfColumns) {
