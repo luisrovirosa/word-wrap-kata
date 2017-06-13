@@ -3,11 +3,10 @@ public class WordWrap {
         if (text.length() <= numberOfColumns){
             return text;
         }
-        int endOfFirstWrap = numberOfColumns;
         int beginningOfSecondWrap = numberOfColumns;
         int positionOfFirstSpace = text.indexOf(" ");
+        int endOfFirstWrap = hasSpacesWithinColumns(text, numberOfColumns) ? positionOfFirstSpace : numberOfColumns;
         if (hasSpacesWithinColumns(text, numberOfColumns)){
-            endOfFirstWrap = positionOfFirstSpace;
             beginningOfSecondWrap = positionOfFirstSpace + 1;
         }
         return text.substring(0, endOfFirstWrap)
