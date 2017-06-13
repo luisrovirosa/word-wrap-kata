@@ -9,12 +9,16 @@ public class WordWrap {
     }
 
     private String firstWrap(String text, int numberOfColumns) {
-        int endOfFirstWrap = hasSpacesWithinColumns(text, numberOfColumns) ? positionOfSpace(text, numberOfColumns) : numberOfColumns;
+        int endOfFirstWrap = hasSpacesWithinColumns(text, numberOfColumns)
+                ? positionOfSpace(text, numberOfColumns)
+                : numberOfColumns;
         return text.substring(0, endOfFirstWrap);
     }
 
     private String secondWrap(String text, int numberOfColumns) {
-        int beginningOfSecondWrap = hasSpacesWithinColumns(text, numberOfColumns) ? positionOfSpace(text, numberOfColumns) + 1 : numberOfColumns;
+        int beginningOfSecondWrap = hasSpacesWithinColumns(text, numberOfColumns)
+                ? positionOfSpace(text, numberOfColumns) + 1
+                : numberOfColumns;
         return wrap(text.substring(beginningOfSecondWrap), numberOfColumns);
     }
 
