@@ -6,7 +6,7 @@ public class WordWrap {
         int endOfFirstWrap = numberOfColumns;
         int beginningOfSecondWrap = numberOfColumns;
         int positionOfFirstSpace = text.indexOf(" ");
-        if (positionOfFirstSpace > -1 && positionOfFirstSpace <= numberOfColumns){
+        if (hasSpacesWithinColumns(text, numberOfColumns)){
             endOfFirstWrap = positionOfFirstSpace;
             beginningOfSecondWrap = positionOfFirstSpace + 1;
         }
@@ -14,4 +14,10 @@ public class WordWrap {
                 + "\n"
                 + wrap(text.substring(beginningOfSecondWrap), numberOfColumns);
     }
+
+    private boolean hasSpacesWithinColumns(String text, int numberOfColumns) {
+        int positionOfFirstSpace = text.indexOf(" ");
+        return positionOfFirstSpace > -1 && positionOfFirstSpace <= numberOfColumns;
+    }
+
 }
