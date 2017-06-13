@@ -17,17 +17,18 @@ public class WordWrapKataTest {
     }
 
     @Test
-    public void two_words_smaller_than_the_number_of_columns_split_the_content_without_splitting_words(){
+    public void two_words_each_of_them_smaller_than_the_number_of_columns_split_the_content_without_splitting_words(){
         assertThat(wrap("hola luis", 6), is("hola\nluis"));
     }
 
     @Test
-    public void first_word_bigger_than_number_of_columns_split_by_number_of_columns(){
+    public void with_multiple_words_and_the_first_is_bigger_than_number_of_columns_splits_the_first_word_by_the_number_of_columns(){
         assertThat(wrap("hola luis", 2), is("ho\nla\nlu\nis"));
+        assertThat(wrap("hola luis", 3), is("hol\na\nlui\ns"));
     }
 
     @Test
-    public void split_by_last_space_smaller_than_the_number_of_columns(){
+    public void wrap_more_than_one_word_together(){
         assertThat(wrap("hola a todos", 6), is("hola a\ntodos"));
     }
 
