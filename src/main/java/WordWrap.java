@@ -3,17 +3,20 @@ public class WordWrap {
         if (text.length() <= numberOfColumns){
             return text;
         }
-        int positionOfFirstSpace = text.indexOf(" ");
-        int endOfFirstWrap = hasSpacesWithinColumns(text, numberOfColumns) ? positionOfFirstSpace : numberOfColumns;
-        int beginningOfSecondWrap = hasSpacesWithinColumns(text, numberOfColumns) ? positionOfFirstSpace + 1 : numberOfColumns;
+        int endOfFirstWrap = hasSpacesWithinColumns(text, numberOfColumns) ? positionOfSpace(text) : numberOfColumns;
+        int beginningOfSecondWrap = hasSpacesWithinColumns(text, numberOfColumns) ? positionOfSpace(text) + 1 : numberOfColumns;
         return text.substring(0, endOfFirstWrap)
                 + "\n"
                 + wrap(text.substring(beginningOfSecondWrap), numberOfColumns);
     }
 
     private boolean hasSpacesWithinColumns(String text, int numberOfColumns) {
-        int positionOfFirstSpace = text.indexOf(" ");
+        int positionOfFirstSpace = positionOfSpace(text);
         return positionOfFirstSpace > -1 && positionOfFirstSpace <= numberOfColumns;
+    }
+
+    private int positionOfSpace(String text) {
+        return text.indexOf(" ");
     }
 
 }
