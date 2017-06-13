@@ -3,12 +3,9 @@ public class WordWrap {
         if (text.length() <= numberOfColumns){
             return text;
         }
-        int beginningOfSecondWrap = numberOfColumns;
         int positionOfFirstSpace = text.indexOf(" ");
         int endOfFirstWrap = hasSpacesWithinColumns(text, numberOfColumns) ? positionOfFirstSpace : numberOfColumns;
-        if (hasSpacesWithinColumns(text, numberOfColumns)){
-            beginningOfSecondWrap = positionOfFirstSpace + 1;
-        }
+        int beginningOfSecondWrap = hasSpacesWithinColumns(text, numberOfColumns) ? positionOfFirstSpace + 1 : numberOfColumns;
         return text.substring(0, endOfFirstWrap)
                 + "\n"
                 + wrap(text.substring(beginningOfSecondWrap), numberOfColumns);
