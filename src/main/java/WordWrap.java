@@ -9,34 +9,34 @@ public class WordWrap {
     }
 
     private String firstWrap(String text, int numberOfColumns) {
-        int endOfFirstWrap = hasSpacesWithinColumns(text, numberOfColumns)
-                ? positionOfSpace(text, numberOfColumns)
+        int endOfFirstWrap = hasSpaceWithinColumns(text, numberOfColumns)
+                ? positionOfLastSpaceWithinColumns(text, numberOfColumns)
                 : numberOfColumns;
         return text.substring(0, endOfFirstWrap);
     }
 
     private String secondWrap(String text, int numberOfColumns) {
-        int beginningOfSecondWrap = hasSpacesWithinColumns(text, numberOfColumns)
-                ? positionOfSpace(text, numberOfColumns) + 1
+        int beginningOfSecondWrap = hasSpaceWithinColumns(text, numberOfColumns)
+                ? positionOfLastSpaceWithinColumns(text, numberOfColumns) + 1
                 : numberOfColumns;
         return wrap(text.substring(beginningOfSecondWrap), numberOfColumns);
     }
 
-    private boolean hasSpacesWithinColumns(String text, int numberOfColumns) {
-        int positionOfFirstSpace = positionOfSpace(text, numberOfColumns);
-        return positionOfFirstSpace > -1;
+    private boolean hasSpaceWithinColumns(String text, int numberOfColumns) {
+        int positionOfFirstSpace = positionOfLastSpaceWithinColumns(text, numberOfColumns);
+        return positionOfFirstSpace != -1;
     }
 
-    private int positionOfSpace(String text, int numberOfColumns) {
-        return positionOfSpace(text, numberOfColumns, 0);
+    private int positionOfLastSpaceWithinColumns(String text, int numberOfColumns) {
+        return positionOfNextSpaceWithinColumns(text, numberOfColumns, 0);
     }
 
-    private int positionOfSpace(String text, int numberOfColumns, int startingOn) {
+    private int positionOfNextSpaceWithinColumns(String text, int numberOfColumns, int startingOn) {
         int positionOfNextSpace = text.indexOf(" ", startingOn + 1);
         if (positionOfNextSpace == -1 || positionOfNextSpace > numberOfColumns) {
             return -1;
         }
-        return Math.max(positionOfNextSpace, positionOfSpace(text, numberOfColumns, positionOfNextSpace));
+        return Math.max(positionOfNextSpace, positionOfNextSpaceWithinColumns(text, numberOfColumns, positionOfNextSpace));
     }
 
 }
