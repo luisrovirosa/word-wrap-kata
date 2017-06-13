@@ -1,6 +1,6 @@
 public class WordWrap {
     public String wrap(String text, int numberOfColumns) {
-        if (text.length() <= numberOfColumns){
+        if (text.length() <= numberOfColumns) {
             return text;
         }
         return firstWrap(text, numberOfColumns)
@@ -24,11 +24,15 @@ public class WordWrap {
     }
 
     private int positionOfSpace(String text, int numberOfColumns) {
-        int positionOfFirstSpace = text.indexOf(" ");
-        if (positionOfFirstSpace > numberOfColumns){
+        return positionOfSpace(text, numberOfColumns, 0);
+    }
+
+    private int positionOfSpace(String text, int numberOfColumns, int startingOn) {
+        int positionOfNextSpace = text.indexOf(" ", startingOn + 1);
+        if (positionOfNextSpace == -1 || positionOfNextSpace > numberOfColumns) {
             return -1;
         }
-        return positionOfFirstSpace;
+        return Math.max(positionOfNextSpace, positionOfSpace(text, numberOfColumns, positionOfNextSpace));
     }
 
 }

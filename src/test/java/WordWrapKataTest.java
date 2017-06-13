@@ -1,3 +1,4 @@
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
@@ -23,6 +24,11 @@ public class WordWrapKataTest {
     @Test
     public void first_word_bigger_than_number_of_columns_split_by_number_of_columns(){
         assertThat(wrap("hola luis", 2), is("ho\nla\nlu\nis"));
+    }
+
+    @Test
+    public void split_by_last_space_smaller_than_the_number_of_columns(){
+        assertThat(wrap("hola a todos", 6), is("hola a\ntodos"));
     }
 
     private String wrap(String text, int numberOfColumns) {
